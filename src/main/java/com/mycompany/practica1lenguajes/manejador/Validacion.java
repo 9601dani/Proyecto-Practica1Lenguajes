@@ -3,6 +3,7 @@ package com.mycompany.practica1lenguajes.manejador;
 import com.mycompany.practica1lenguajes.ejecutable.Main;
 import static com.mycompany.practica1lenguajes.ejecutable.Main.metodos;
 import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.tokensA;
+import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.tokensE;
 import com.mycompany.practica1lenguajes.vista.PaginaPrincipa;
 import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.areatext;
 import java.io.File;
@@ -49,7 +50,7 @@ public ValidacionTokens val;
        val.getToken();
     }
     
-    public String descripcionMatriz(int a , int b){
+    public static String descripcionMatriz(int a , int b){
         String matriz[][] = new String[8][6];
         matriz[0][0] = "Identificador";
         matriz[0][1] = "Entero";
@@ -107,6 +108,14 @@ public ValidacionTokens val;
     public static String Rep(){
         String datos="";
         for (String tokens : tokensA) {
+            datos+=tokens+"\n";
+        }
+        return datos;
+    }
+    
+    public static String Rep1(){
+        String datos="";
+        for (String tokens : tokensE) {
             datos+=tokens+"\n";
         }
         return datos;

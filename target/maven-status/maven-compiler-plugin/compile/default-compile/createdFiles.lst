@@ -1,5 +1,11 @@
+com/mycompany/practica1lenguajes/manejador/SobreescrituraMetodos.class
 com/mycompany/practica1lenguajes/ejecutable/Main.class
-com/mycompany/practica1lenguajes/vista/PaginaPrincipal.class
-com/mycompany/practica1lenguajes/vista/PaginaPrincipal$1.class
-com/mycompany/practica1lenguajes/manejador/Validacion.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa$5.class
 com/mycompany/practica1lenguajes/clases/ObjetoValidacion.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa$3.class
+com/mycompany/practica1lenguajes/manejador/ValidacionTokens.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa$4.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa$1.class
+com/mycompany/practica1lenguajes/manejador/Validacion.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa.class
+com/mycompany/practica1lenguajes/vista/PaginaPrincipa$2.class

@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * @author daniel
  */
 public class ValidacionTokens {
+    String error; 
+    boolean seguirLeyendo = true;
+    boolean err=false;
     int posicion = 0;
     int columna=1;
     int fila=1;
@@ -16,6 +19,7 @@ public class ValidacionTokens {
     int estadosFinalizacion[] = new int[6];
     String descripcionFinalizacion[] = new String[6];
    public static ArrayList<String> tokensA= new ArrayList();
+   public static ArrayList<String> tokensE= new ArrayList();
     public ValidacionTokens(char[] cadena){
         this.cadena=cadena;
         
@@ -52,8 +56,20 @@ public class ValidacionTokens {
     }
     public int getSiguienteEstado(int estadoActual, int caracter) {
         int resultado = -1;
-        if (caracter >= 0 && caracter <= 7) {
+        if (caracter >= 0 && caracter <= 5) {
             resultado = matriz[estadoActual][caracter];
+            if (resultado == -1) {
+                error = Validacion.descripcionMatriz(estadoActual, caracter);
+                System.out.println(error);
+                seguirLeyendo=false;
+                err=true;
+
+            }else if(resultado==3){
+                error = Validacion.descripcionMatriz(estadoActual, caracter);
+                System.out.println(error);
+                seguirLeyendo=false;
+                err=true;
+            }
         }
         return resultado;
     }
@@ -111,13 +127,12 @@ public class ValidacionTokens {
             }
             indice++;
         }
-
         return res;
     }
     
     public void getToken() {
         int estadoActual = 0;
-        boolean seguirLeyendo = true;
+        
         char tmp;
         String token = "";
 
@@ -125,13 +140,23 @@ public class ValidacionTokens {
             while (seguirLeyendo == true && posicion < cadena.length) {
 
                 if (posicion == cadena.length || Character.isSpaceChar(tmp = cadena[posicion])) {
-                    tokensA.add(token + " columna: " + (columna-1) + " fila: " + (fila));
-                    seguirLeyendo = false;
+                    if(token==""){
+                        
+                    }else{
+                      tokensA.add("'"+token+"'"+" Es un: "+getEstadoAceptacion(estadoActual) + " columna: " + (columna-1) + " fila: " + (fila));
+                      seguirLeyendo = false;  
+                    }
+                    
                 } else if (cadena[posicion] == '\n' || posicion == cadena.length) {
-                    tokensA.add(token + " columna: " + (columna-1) + " fila: " + (fila));
-                    fila++;
-                    columna = 0;
-                    seguirLeyendo = false;
+                    if(token==""){
+                        
+                    }else{
+                        tokensA.add("'" + token + "'" + " Es un: " + getEstadoAceptacion(estadoActual) + " columna: " + (columna - 1) + " fila: " + (fila));
+                        fila++;
+                        columna = 0;
+                        seguirLeyendo = false; 
+                    }
+                    
                 } else {
                     // para mi automata
                     int estadoTemporal = getSiguienteEstado(estadoActual, getIntCaracter(tmp));
@@ -139,14 +164,17 @@ public class ValidacionTokens {
                     token += tmp;
                     estadoActual = estadoTemporal;
                     System.out.println(tmp + " columna: " + columna + " fila: " + fila);
-                    
+                    if(err==true){
+                        tokensE.add(token + " columna: " + (columna-1) + " fila: " + (fila)+" ERROR: "+ error);
+                        err=false;
+                        error="";
+                    }
 
                 }
                 posicion++;
                 columna++;
             }
             if (seguirLeyendo == false) {
-                
                 System.out.println("*********Termino en el estado " + getEstadoAceptacion(estadoActual) + " token actual : " + token);
                 seguirLeyendo = true;
                 token = "";
@@ -154,7 +182,10 @@ public class ValidacionTokens {
             }
 
         }
-        tokensA.add(token + " columna: " + (columna-1) + " fila: " + (fila));
+        if(token!=""){
+            tokensA.add("'"+token+"'"+" Es un: "+getEstadoAceptacion(estadoActual) + " columna: " + (columna-1) + " fila: " + (fila));
+        }
+        
         System.out.println("*********Termino en el estado " + getEstadoAceptacion(estadoActual) + " token actual : " + token);
     }
      
