@@ -158,7 +158,7 @@ public class PaginaPrincipa extends javax.swing.JFrame {
 
     private void botonbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonbuscarActionPerformed
         String textb= textBuscar.getText();
-        if(textb==" "){
+        if(textb==""){
             JOptionPane.showMessageDialog(null, "NO HAY TEXTO PARA INGRESAR");
         }else{
             
@@ -177,6 +177,7 @@ public class PaginaPrincipa extends javax.swing.JFrame {
 
     private void botonErrorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonErrorActionPerformed
        JOptionPane.showMessageDialog(null, Validacion.Rep1());
+      
     }//GEN-LAST:event_botonErrorActionPerformed
 
 

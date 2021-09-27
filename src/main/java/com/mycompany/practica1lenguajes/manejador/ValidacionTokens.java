@@ -15,7 +15,7 @@ public class ValidacionTokens {
     int columna=1;
     int fila=1;
     char[] cadena;
-    int matriz[][] = new int[8][6];
+    int matriz[][] = new int[8][7];
     int estadosFinalizacion[] = new int[6];
     String descripcionFinalizacion[] = new String[6];
    public static ArrayList<String> tokensA= new ArrayList();
@@ -43,33 +43,34 @@ public class ValidacionTokens {
         descripcionFinalizacion[5]="Operador";
         
         int estadosFinalizacion[] = new int[6];
-        matriz[0][0] = 1; matriz[0][1] = 2; matriz[0][2] = 7; matriz[0][3] = 6; matriz[0][4] = 5; matriz[0][5] = -1;
-        matriz[1][0] = 1; matriz[1][1] = 1; matriz[1][2] = -1; matriz[1][3] = -1; matriz[1][4] = -1; matriz[1][5] = -1;
-        matriz[2][0] = -1; matriz[2][1] = 2; matriz[2][2] = -1; matriz[2][3] = -1; matriz[2][4] = -1; matriz[2][5] =3 ;
-        matriz[3][0] = -1; matriz[3][1] = 4; matriz[3][2] = -1;  matriz[3][3] = -1;  matriz[3][4] = -1;  matriz[3][5] = -1;
-        matriz[4][0] = -1; matriz[4][1] = 4;   matriz[4][2] = -1;    matriz[4][3] = -1;  matriz[4][4] = -1; matriz[4][5] = -1;
-        matriz[5][0] = -1; matriz[5][1] = -1;  matriz[5][2] = -1;  matriz[5][3] = -1;   matriz[5][4] = -1;   matriz[5][5] = -1;
-        matriz[6][0] = -1;  matriz[6][1] = -1;  matriz[6][2] = -1;  matriz[6][3] = -1; matriz[6][4] = -1; matriz[6][5] = -1;
-        matriz[7][0] = -1; matriz[7][1] = -1;  matriz[7][2] = -1;  matriz[7][3] = -1; matriz[7][4] = -1; matriz[7][5] = -1;
+        matriz[0][0] = 1; matriz[0][1] = 2; matriz[0][2] = 7; matriz[0][3] = 6; matriz[0][4] = 5; matriz[0][5] = 5; matriz[0][6] = -1; 
+        matriz[1][0] = 1; matriz[1][1] = 1; matriz[1][2] = -1; matriz[1][3] = -1; matriz[1][4] = -1; matriz[1][5] = -1;matriz[0][6] = -1; 
+        matriz[2][0] = -1; matriz[2][1] = 2; matriz[2][2] = -1; matriz[2][3] = -1; matriz[2][4] = -1; matriz[2][5] =3 ;matriz[0][6] = -1; 
+        matriz[3][0] = -1; matriz[3][1] = 4; matriz[3][2] = -1;  matriz[3][3] = -1;  matriz[3][4] = -1;  matriz[3][5] = -1;matriz[0][6] = -1; 
+        matriz[4][0] = -1; matriz[4][1] = 4;   matriz[4][2] = -1;    matriz[4][3] = -1;  matriz[4][4] = -1; matriz[4][5] = -1;matriz[0][6] = -1; 
+        matriz[5][0] = -1; matriz[5][1] = -1;  matriz[5][2] = -1;  matriz[5][3] = -1;   matriz[5][4] = -1;   matriz[5][5] = -1;matriz[0][6] = -1; 
+        matriz[6][0] = -1;  matriz[6][1] = -1;  matriz[6][2] = -1;  matriz[6][3] = -1; matriz[6][4] = -1; matriz[6][5] = -1;matriz[0][6] = -1; 
+        matriz[7][0] = -1; matriz[7][1] = -1;  matriz[7][2] = -1;  matriz[7][3] = -1; matriz[7][4] = -1; matriz[7][5] = -1;matriz[0][6] = -1; 
         
 
     }
     public int getSiguienteEstado(int estadoActual, int caracter) {
-        int resultado = -1;
-        if (caracter >= 0 && caracter <= 5) {
+       int resultado=0;
+        if (caracter >= 0 && caracter <= 6) {
             resultado = matriz[estadoActual][caracter];
+            System.out.println(estadoActual+"--"+caracter);
             if (resultado == -1) {
                 error = Validacion.descripcionMatriz(estadoActual, caracter);
                 System.out.println(error);
                 seguirLeyendo=false;
                 err=true;
 
-            }else if(resultado==3){
+            }
+        }else{
                 error = Validacion.descripcionMatriz(estadoActual, caracter);
                 System.out.println(error);
                 seguirLeyendo=false;
                 err=true;
-            }
         }
         return resultado;
     }
@@ -132,7 +133,8 @@ public class ValidacionTokens {
     
     public void getToken() {
         int estadoActual = 0;
-        
+        tokensA.clear();
+        tokensE.clear();
         char tmp;
         String token = "";
 
