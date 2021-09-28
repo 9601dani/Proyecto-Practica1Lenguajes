@@ -4,10 +4,12 @@
  */
 package com.mycompany.practica1lenguajes.vista;
 
-import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.nB;
+import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.tokensE;
 import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.transicion;
+import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.ls;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,18 +20,11 @@ public class Buscador extends javax.swing.JFrame {
     /**
      * Creates new form Buscador
      */
-    public Buscador(ArrayList<String> arr) {
+    public Buscador() {
         initComponents();
-        DefaultListModel listModel = new DefaultListModel();
-        //Recorrer el contenido del ArrayList
-        for(int i=0; i<nB.size(); i++) {
-            //Añadir cada elemento del ArrayList en el modelo de la lista
-            listModel.add(i, i+". ---> "+nB.get(i));
-        }
-        
-        //Asociar el modelo de lista al JList
-        jList1.setModel(listModel);
-    }
+        this.textB.setContentType("text/html");
+        textB.setText(ls.toString());
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -41,28 +36,28 @@ public class Buscador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        textB = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane2.setViewportView(textB);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(79, 79, 79)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -82,8 +77,8 @@ public class Buscador extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextPane textB;
     // End of variables declaration//GEN-END:variables
 }

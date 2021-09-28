@@ -177,7 +177,9 @@ public class PaginaPrincipa extends javax.swing.JFrame {
 
     private void botonbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonbuscarActionPerformed
         String textb = textBuscar.getText();
-       ValidacionTokens.buscados(textb);
+       ValidacionTokens l = new ValidacionTokens(textb.toCharArray());
+       l.buscados(textb);
+        
 
     }//GEN-LAST:event_botonbuscarActionPerformed
 

@@ -1,5 +1,6 @@
 package com.mycompany.practica1lenguajes.manejador;
 
+import com.mycompany.practica1lenguajes.vista.Buscador;
 import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.areatext;
 import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.ls;
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class ValidacionTokens {
    public static ArrayList<String> tokensA= new ArrayList();
    public static ArrayList<String> tokensE= new ArrayList();
    public static ArrayList<String> transicion= new ArrayList();
-   public static ArrayList<String> nB= new ArrayList();
     public ValidacionTokens(char[] cadena){
         this.cadena=cadena;
         
@@ -203,59 +203,73 @@ public class ValidacionTokens {
      
     
     public static void buscados(String textb) {
-        nB.clear();
-        int iterador = 0;
-        int inicio = 0;
-        boolean seguirLeyendo = false;
+        ls.clear();
+        int con=0;
+        boolean agrege = false;
+        boolean res = false;
+        boolean leer = false;
+        String cad = "";
+        String cadf = "";
+        int suma = 0;
         if (textb.toCharArray().length == 0) {
             JOptionPane.showMessageDialog(null, "NO HAY TEXTO PARA INGRESAR");
         } else {
             char[] cadenaB = textb.toCharArray();
             char[] cadena = areatext.getText().toCharArray();
-
-            for (int i = 0; i < cadenaB.length; i++) {
-                if (!Character.isSpaceChar(cadenaB[i])) {
-                    if (cadena[iterador] == cadenaB[i]) {
-                        if (iterador == 0) {
-                            inicio = i;
-                            seguirLeyendo = true;
+            for (int i = 0; i < cadena.length; i++) {
+                if (cadenaB[0] == cadena[i]) {
+                    cad = "";
+                    leer = true;
+                    suma = i;
+                    for (int p = 0; p <= cadenaB.length; p++) {
+                        if (cad.length() == cadenaB.length) {
+                            if (Verificar(cad.toCharArray(), cadenaB) == true) {
+                                i = suma;
+                                cadf += ("<u><strong style=\"color:blue;\">" + cad +"</strong></u>");
+                                con++;
+                                leer = false;
+                            } else{
+                                break;
+                            }
+                        } else if (cadenaB[p] == cadena[i + p] && (i + p) < cadena.length-1 && leer) { 
+                            cad += cadena[i + p];
+                            suma++;
+                        } else {
+                            leer = false;
+                            cad+=(cadena[i]);
+                            break;
                         }
-                        if (cadena.length - 1 == iterador && seguirLeyendo) {
-                            nB.add(Remarcador(textb,inicio,i));
-                        }
-                        iterador++;
-                    } else {
-                        seguirLeyendo = false;
-                        iterador = 0;
                     }
+                    cadf += cadena[i];
+                } else {
+                    cadf += cadena[i];
+                }
+                if(cadena[i]== '\n'){
+                        cadf+="<br>";
                 }
             }
-
+            ls.add(cadf);
         }
-        System.out.println("-------->"+nB);
+        if(con>0){
+            Buscador nb= new Buscador();
+             nb.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "No hemos encontrado palabras");
+        }
+        
     }
     
-    public static String Remarcador(String p, int inicio, int fin){
-        String nuevaCadena="";
-        char[] caracteres= p.toCharArray();
-        for(int i=0;i<caracteres.length;i++){
-            if(i==inicio) {
-                if(i==fin){
-                    nuevaCadena+="<u><i><strong style=\"color:red;\">"+caracteres[i]+"</strong></i></u>";
-                } else{
-                     nuevaCadena+="<u><i><strong style=\"color:red;\">"+caracteres[i];
+    public static boolean Verificar(char[] l1, char[] l2) {
+        if (l1.length == l2.length) {
+            for (int i = 0; i < l1.length; i++) {
+                if (l1[i] != l2[i]) {
+                    return false;
                 }
-            }else if(i==fin){
-                nuevaCadena+= caracteres[i]+"</strong></i></u>";
-            }else{
-                nuevaCadena+=caracteres[i];
             }
         }
-        
-        return nuevaCadena;
-        
-        
+
+        return true;
+
     }
-        
     
 }
