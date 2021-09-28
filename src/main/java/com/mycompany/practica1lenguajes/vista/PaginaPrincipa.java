@@ -21,8 +21,6 @@ import javax.swing.JOptionPane;
  */
 public class PaginaPrincipa extends javax.swing.JFrame {
     public static ArrayList<String> ls= new ArrayList<String>();
-    String red="\033[31m";  
-    String reset="\u001B[0m";
     public PaginaPrincipa() {
         initComponents();
         areatext.setEditable(false);
@@ -44,6 +42,7 @@ public class PaginaPrincipa extends javax.swing.JFrame {
         botonrep = new javax.swing.JButton();
         botonError = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        botonEx = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Analizador");
@@ -103,6 +102,13 @@ public class PaginaPrincipa extends javax.swing.JFrame {
             }
         });
 
+        botonEx.setText("Exportar Archivo");
+        botonEx.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonExActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,16 +117,21 @@ public class PaginaPrincipa extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonsubir)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonEditar)
-                        .addGap(14, 14, 14)
-                        .addComponent(botonextraer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(textBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonbuscar)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(botonsubir)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonEditar)
+                                .addGap(14, 14, 14)
+                                .addComponent(botonextraer)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonbuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(botonEx)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(botonrep)
@@ -140,15 +151,16 @@ public class PaginaPrincipa extends javax.swing.JFrame {
                     .addComponent(botonextraer)
                     .addComponent(botonrep))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonError)
+                    .addComponent(botonEx))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addGap(156, 156, 156))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(botonError)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(0, 257, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,12 +231,20 @@ public class PaginaPrincipa extends javax.swing.JFrame {
       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void botonExActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonExActionPerformed
+        ArrayList<String> fi= new ArrayList<String>();
+        fi.add(areatext.getText());
+        Validacion v = new Validacion();
+        v.exportar(fi);
+    }//GEN-LAST:event_botonExActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextArea areatext;
     private javax.swing.JButton botonEditar;
     private javax.swing.JButton botonError;
+    private javax.swing.JButton botonEx;
     private javax.swing.JButton botonbuscar;
     private javax.swing.JButton botonextraer;
     private javax.swing.JButton botonrep;

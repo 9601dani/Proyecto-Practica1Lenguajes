@@ -6,12 +6,16 @@ import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.tokens
 import static com.mycompany.practica1lenguajes.manejador.ValidacionTokens.tokensE;
 import com.mycompany.practica1lenguajes.vista.PaginaPrincipa;
 import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.areatext;
+import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.ls;
+import java.awt.FileDialog;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
  
 /**
@@ -127,5 +131,34 @@ public ValidacionTokens val;
             datos+=tokens+"  \n";
         }
         return datos;
+    }
+    
+    public void exportar(ArrayList<String> fi){
+        System.out.println(fi.size());
+        if(fi!=null){
+            FileDialog archivo = null;
+            archivo = new FileDialog(archivo, "Guardar Archivo", FileDialog.SAVE);
+            archivo.setVisible(true);
+            archivo.dispose();
+            escribir(fi, archivo.getDirectory() + archivo.getFile());
+            JOptionPane.showMessageDialog(null, "Revisa El Archivo");
+           
+        }else{
+            JOptionPane.showMessageDialog(null, "NO HAY TEXTO INGRESADO");
+        }
+        
+    }
+    
+    public void escribir(ArrayList<String> lineas, String path){
+        try{
+            FileWriter escritor = new FileWriter(new File(path+".txt"));
+            for(String lin : lineas){
+                escritor.write(lin+"\n");
+            }
+            escritor.close();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        
     }
 }

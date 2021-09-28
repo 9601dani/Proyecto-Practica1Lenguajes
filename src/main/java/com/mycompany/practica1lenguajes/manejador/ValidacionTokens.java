@@ -141,7 +141,8 @@ public class ValidacionTokens {
         int estadoActual = 0;
         tokensA.clear();
         tokensE.clear();
-        char tmp;
+        transicion.clear()
+;        char tmp;
         String token = "";
 
         while (posicion < cadena.length) {
