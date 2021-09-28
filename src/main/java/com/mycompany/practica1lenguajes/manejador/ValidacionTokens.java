@@ -1,6 +1,9 @@
 package com.mycompany.practica1lenguajes.manejador;
 
+import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.areatext;
+import static com.mycompany.practica1lenguajes.vista.PaginaPrincipa.ls;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -9,6 +12,7 @@ import java.util.ArrayList;
  */
 public class ValidacionTokens {
     String error; 
+    String g;
     boolean seguirLeyendo = true;
     boolean err=false;
     int posicion = 0;
@@ -20,6 +24,8 @@ public class ValidacionTokens {
     String descripcionFinalizacion[] = new String[6];
    public static ArrayList<String> tokensA= new ArrayList();
    public static ArrayList<String> tokensE= new ArrayList();
+   public static ArrayList<String> transicion= new ArrayList();
+   public static ArrayList<String> nB= new ArrayList();
     public ValidacionTokens(char[] cadena){
         this.cadena=cadena;
         
@@ -146,7 +152,8 @@ public class ValidacionTokens {
                         
                     }else{
                       tokensA.add("'"+token+"'"+" Es un: "+getEstadoAceptacion(estadoActual) + " columna: " + (columna-1) + " fila: " + (fila));
-                      seguirLeyendo = false;  
+                      seguirLeyendo = false; 
+                      g="espacio";
                     }
                     
                 } else if (cadena[posicion] == '\n' || posicion == cadena.length) {
@@ -157,12 +164,14 @@ public class ValidacionTokens {
                         fila++;
                         columna = 0;
                         seguirLeyendo = false; 
+                        g="salto de linea";
                     }
                     
                 } else {
                     // para mi automata
                     int estadoTemporal = getSiguienteEstado(estadoActual, getIntCaracter(tmp));
                     System.out.println("Estado actual " + estadoActual + " caracter " + tmp + " transicion a " + estadoTemporal);
+                    transicion.add("Me movi del estado " + estadoActual + " al estado " + estadoTemporal+ " con una " + tmp);
                     token += tmp;
                     estadoActual = estadoTemporal;
                     System.out.println(tmp + " columna: " + columna + " fila: " + fila);
@@ -181,6 +190,7 @@ public class ValidacionTokens {
                 seguirLeyendo = true;
                 token = "";
                 estadoActual = 0;
+                transicion.add("Me movi al estado " + estadoActual + " por "+g);
             }
 
         }
@@ -191,5 +201,61 @@ public class ValidacionTokens {
         System.out.println("*********Termino en el estado " + getEstadoAceptacion(estadoActual) + " token actual : " + token);
     }
      
+    
+    public static void buscados(String textb) {
+        nB.clear();
+        int iterador = 0;
+        int inicio = 0;
+        boolean seguirLeyendo = false;
+        if (textb.toCharArray().length == 0) {
+            JOptionPane.showMessageDialog(null, "NO HAY TEXTO PARA INGRESAR");
+        } else {
+            char[] cadenaB = textb.toCharArray();
+            char[] cadena = areatext.getText().toCharArray();
+
+            for (int i = 0; i < cadenaB.length; i++) {
+                if (!Character.isSpaceChar(cadenaB[i])) {
+                    if (cadena[iterador] == cadenaB[i]) {
+                        if (iterador == 0) {
+                            inicio = i;
+                            seguirLeyendo = true;
+                        }
+                        if (cadena.length - 1 == iterador && seguirLeyendo) {
+                            nB.add(Remarcador(textb,inicio,i));
+                        }
+                        iterador++;
+                    } else {
+                        seguirLeyendo = false;
+                        iterador = 0;
+                    }
+                }
+            }
+
+        }
+        System.out.println("-------->"+nB);
+    }
+    
+    public static String Remarcador(String p, int inicio, int fin){
+        String nuevaCadena="";
+        char[] caracteres= p.toCharArray();
+        for(int i=0;i<caracteres.length;i++){
+            if(i==inicio) {
+                if(i==fin){
+                    nuevaCadena+="<u><i><strong style=\"color:red;\">"+caracteres[i]+"</strong></i></u>";
+                } else{
+                     nuevaCadena+="<u><i><strong style=\"color:red;\">"+caracteres[i];
+                }
+            }else if(i==fin){
+                nuevaCadena+= caracteres[i]+"</strong></i></u>";
+            }else{
+                nuevaCadena+=caracteres[i];
+            }
+        }
+        
+        return nuevaCadena;
+        
+        
+    }
+        
     
 }

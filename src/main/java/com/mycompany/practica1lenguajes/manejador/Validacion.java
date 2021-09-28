@@ -124,7 +124,7 @@ public ValidacionTokens val;
     public static String Rep1(){
         String datos="";
         for (String tokens : tokensE) {
-            datos+=tokens+"\n";
+            datos+=tokens+"  \n";
         }
         return datos;
     }

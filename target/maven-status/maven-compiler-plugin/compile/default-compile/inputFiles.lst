@@ -1,6 +1,11 @@
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/vista/PaginaPrincipa.java
+/home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/vista/RepTokens.java
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/manejador/ValidacionTokens.java
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/ejecutable/Main.java
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/manejador/Validacion.java
+/home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/vista/RepTransicion.java
+/home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/vista/Buscador.java
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/manejador/SobreescrituraMetodos.java
+/home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/vista/RepErr.java
 /home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/clases/ObjetoValidacion.java
+/home/daniel/NetBeansProjects/Practica1Lenguajes/src/main/java/com/mycompany/practica1lenguajes/clases/TokensError.java
